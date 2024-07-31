@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #003366;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            margin: 20px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #003366;
+            font-weight: bold;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            background-color: #003366;
+            padding: 10px;
+            border-radius: 8px 8px 0 0;
+        }
+        .tab {
+            color: white;
+            cursor: pointer;
+        }
+        .tab.active {
+            background-color: #fff;
+            color: #003366;
+            padding: 10px;
+            border-radius: 8px 8px 0 0;
+            font-weight: bold;
+        }
+        .content {
+            display: flex;
+            padding: 20px;
+        }
+        .content img {
+            max-width: 300px;
+            margin-right: 20px;
+        }
+        .result-details {
+            max-width: calc(100% - 320px);
+        }
+        .result-details h2 {
+            color: #333;
+        }
+        .result-details p {
+            font-size: 1.2em;
+            color: #555;
+        }
+        .result-details ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .result-details ul li {
+            margin: 10px 0;
+        }
+        footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Predicting the Risk of Type 2 Diabetes Mellitus (T2DM) in the Western Region of Saudi Arabia</h1>
+    </header>
+    <nav>
+        <a href="#">Diabetes</a>
+        <a href="#">Survey</a>
+        <a href="#">Precaution</a>
+        <a href="#">About us</a>
+    </nav>
+    <div class="container">
+        <div class="tabs">
+            <div class="tab" onclick="showSection('about')">About Diabetic</div>
+            <div class="tab" onclick="showSection('prediction')">Diabetic Prediction</div>
+            <div class="tab active" onclick="showSection('result')">Result</div>
+        </div>
+        <div id="result" class="content active">
+            <img src="diabetes-device.jpg" alt="Diabetes Device">
+            <div class="result-details">
+                <h2>Predicted Probability for a High Risk of T2DM</h2>
+                <p>Scored Labels: "YES" and Scored Probabilities: "0.849356611660555"</p>
+                <p><strong>Yes</strong> = High Risk of Diabetes</p>
+                <p><strong>No</strong> = Low Risk of Diabetes</p>
+                <p><strong>Note:</strong> If the Score probability of the target class (High Risk of diabetes) is less than or equal to 0.5 then the predicted scored label is No (Low-Risk of Diabetes). On the contrary, if the Score probability of the target class (High risk of diabetes) is more than 0.5 then the predicted score label is YES (High-Risk of Diabetes).</p>
+                <h3>Remarks</h3>
+                <ul>
+                    <li>If the predicted Score label of end-user is "Yes" and the scored probability is <strong>greater than 0.5 and closer to 1.0</strong> then we advise the person to consult a good diabetologist to avoid further progression of the disease.</li>
+                    <li>On the other hand, if the subject (end-user) taking the test obtains a probability score <strong>equal to 0.5</strong> then he/she needs to make necessary dietary precautions (consult a dietitian) and try to avoid a sedentary lifestyle (Join a gym and burn the extra fats and carbohydrate stored in your body).</li>
+                    <li>If the scoring probability of the person taking the test is <strong>close to zero</strong> then a big thumbs up for him/her. Keep up the good work and encourage others to stay healthy and wise like yourself.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2019-2020 Copyright Dr. Asif Hassan Syed and Mr. Tabrej Khan</p>
+    </footer>
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.content');
+            sections.forEach(section => section.classList.remove('active'));
+
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            document.getElementById(sectionId).classList.add('active');
+            document.querySelector(`.tab[onclick="showSection('${sectionId}')"]`).classList.add('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Diabetes Risk Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #003366;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            margin: 20px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #003366;
+            font-weight: bold;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            background-color: #003366;
+            padding: 10px;
+            border-radius: 8px 8px 0 0;
+        }
+        .tab {
+            color: white;
+            cursor: pointer;
+        }
+        .tab.active {
+            background-color: #fff;
+            color: #003366;
+            padding: 10px;
+            border-radius: 8px 8px 0 0;
+            font-weight: bold;
+        }
+        .form-section {
+            display: none;
+        }
+        .form-section.active {
+            display: block;
+        }
+        form {
+            margin: 20px 0;
+        }
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+        select, input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #003366;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Predicting the Risk of Type 2 Diabetes Mellitus (T2DM) in the Western Region of Saudi Arabia</h1>
+    </header>
+    <nav>
+        <a href="#">Diabetes</a>
+        <a href="#">Survey</a>
+        <a href="#">Precaution</a>
+        <a href="#">About us</a>
+    </nav>
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" onclick="showSection('about')">About Diabetic</div>
+            <div class="tab" onclick="showSection('prediction')">Diabetic Prediction</div>
+        </div>
+        <div id="about" class="form-section active">
+            <h2>About Diabetic</h2>
+            <p>Information about diabetes...</p>
+        </div>
+        <div id="prediction" class="form-section">
+            <h2>Diabetic Prediction</h2>
+            <form action="/predict" method="post">
+                <label for="region">Choose Region:</label>
+                <select id="region" name="region" required>
+                    <option value="">Select Region</option>
+                    <option value="region1">Region 1</option>
+                    <option value="region2">Region 2</option>
+                    <!-- Add more options as needed -->
+                </select>
+
+                <label for="gender">Choose Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+
+                <label for="bmi">Choose Body Mass Index (BMI):</label>
+                <input type="number" id="bmi" name="bmi" required>
+
+                <label for="fruits_vegetables">How regular do you eat fruits and vegetables?</label>
+                <select id="fruits_vegetables" name="fruits_vegetables" required>
+                    <option value="">Select an option</option>
+                    <option value="regular">Regular</option>
+                    <option value="irregular">Irregular</option>
+                </select>
+
+                <label for="hypertension">Have you ever taken hypertension medicine?</label>
+                <select id="hypertension" name="hypertension" required>
+                    <option value="">Select an option</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+
+                <label for="smoking">Smoking habits?</label>
+                <select id="smoking" name="smoking" required>
+                    <option value="">Select an option</option>
+                    <option value="smoker">Smoker</option>
+                    <option value="non-smoker">Non-smoker</option>
+                </select>
+
+                <input type="submit" value="Predict">
+            </form>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2019-2020 Copyright Dr. Asif Hassan Syed and Mr. Tabrej Khan</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.form-section');
+            sections.forEach(section => section.classList.remove('active'));
+
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            document.getElementById(sectionId).classList.add('active');
+            document.querySelector(`.tab[onclick="showSection('${sectionId}')"]`).classList.add('active');
+        }
+    </script>
+</body>
+</html>
